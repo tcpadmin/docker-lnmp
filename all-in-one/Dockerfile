@@ -1,4 +1,4 @@
-FROM centos:7.6.1810
+FROM centos:7
 MAINTAINER Tyler <sudobash@126.com>
 
 # nginx mysql php 分开构建
@@ -6,7 +6,8 @@ MAINTAINER Tyler <sudobash@126.com>
 
 # nginx + mysql + php7.2
 RUN yum install -y yum-utils && \
-    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \ # 设置时区
+    # 设置时区
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     # 安装nginx mysql php 需要的源
     yum localinstall -y http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm \
         https://dev.mysql.com/get/mysql80-community-release-el7-2.noarch.rpm \
@@ -15,7 +16,7 @@ RUN yum install -y yum-utils && \
 RUN yum install --nogpgcheck -y nginx
 
 # 默认是mysql8.0 在此禁用80版本 然后指定mysql 5.6或5.7
-RUN    yum-config-manager --disable mysql80-community && \
+RUN yum-config-manager --disable mysql80-community && \
     yum-config-manager --enable mysql57-community && \
     yum install --nogpgcheck -y mysql-community-server
 
