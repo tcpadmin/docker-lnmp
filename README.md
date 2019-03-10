@@ -5,7 +5,9 @@ docker构建lnmp有两种方式
 ## 单容器
 [Dockerfile](all-in-one)
 
-单容器操作简单，基于centos的docker镜像构建，其操作与在centos系统上搭建lnmp环境基本一致，适合入门学习。缺点是复用性不强。
+单容器操作简单，基于centos的docker镜像构建，其操作与在centos系统上搭建lnmp环境基本一致，适合入门学习。
+
+缺点是复用性不强，而且容器很大，build完之后有1.9G 这还没包括redis等其他依赖。
 
 ## 多容器
 docker-compose(doing)
