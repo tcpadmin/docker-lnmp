@@ -1,0 +1,21 @@
+version: "3"
+services:
+  php:
+    build:
+      context: .
+      dockerfile: ./php7.4/php.Dockerfile
+    expose:
+        - "9000"
+    volumes:
+      - /path/to/code:/webapp # 代码目录
+
+  nginx:
+    image: openresty/openresty:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx-conf:/etc/nginx/conf.d # 配置文件映射
+      - ./nginx-logs/:/usr/local/openresty/nginx/logs/ # nginx日志目录映射
+      - /path/to/code:/webapp # 代码目录
+    
+# 参考：https://www.sitepoint.com/docker-php-development-environment/

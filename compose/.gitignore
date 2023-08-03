@@ -1,0 +1,2 @@
+*.yml
+!docker-compose.tpl.yml
